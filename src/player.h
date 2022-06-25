@@ -1,5 +1,6 @@
+#pragma once
 #include "iostream"
-struct Player
+struct player
 {
     std::string name;
     int score;

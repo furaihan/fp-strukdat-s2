@@ -1,3 +1,4 @@
+#pragma once
 #include "iostream"
 
 char *table;
@@ -5,6 +6,35 @@ const std::string cellLine = "     |     |     ";
 const std::string cellLineWithDash = "_____|_____|_____";
 int turn = 1, choice, k;
 char mark;
+void StartGame()
+{
+    do {
+        DrawBoard();
+        turn = (turn % 2) ? 1 : 2;
+
+        std::cout << "Player " << turn << ", enter a number:  ";
+        std::cin >> choice;
+
+        mark = (turn == 1) ? 'X' : 'O';
+
+        int setRet = SetCell(choice, mark);
+        if(setRet == -1) {
+            std::cout << "Invalid move";
+            turn--;
+            std::cin.ignore();
+            std::cin.get();
+        }
+        k = CheckWin();
+        turn++;
+    } while(k == -1);
+    DrawBoard();
+
+    if(k == 1) {
+        std::cout << "==>\aPlayer " << --turn <<" win ";
+    } else {
+        std::cout << "==>\aGame draw";
+    }
+}
 void DrawBoard()
 {
     system("cls");
@@ -40,6 +70,28 @@ int CheckWin()
         }
     }
     return 0;
+}
+int winIndexes[8][3] = 
+{
+    {1,2,3},
+    {4,5,6},
+    {7,8,9},
+    {1,4,7},
+    {2,5,8},
+    {3,6,9},
+    {1,5,9},
+    {3,5,7},
+};
+bool CheckIfSame()
+{
+    for (int i = 0; i < 8; i++)
+    {
+        for (int j = 0;j < 3; j++)
+        {
+            int selectedElem = winIndexes[i][j];
+            
+        }
+    }
 }
 int SetCell(int choice, char mark)
 {
