@@ -2,10 +2,15 @@
 #include "iostream"
 
 char *table;
+char *dualTable[3][3];
 const std::string cellLine = "     |     |     ";
 const std::string cellLineWithDash = "_____|_____|_____";
 int turn = 1, choice, k;
 char mark;
+void DrawBoard();
+int winnerCheck();
+int CheckWin();
+int SetCell(int, char);
 void StartGame()
 {
     do {
@@ -24,7 +29,7 @@ void StartGame()
             std::cin.ignore();
             std::cin.get();
         }
-        k = CheckWin();
+        k = winnerCheck();
         turn++;
     } while(k == -1);
     DrawBoard();
@@ -40,7 +45,7 @@ void DrawBoard()
     system("cls");
     std::cout << "\n\n\tTic Tac Toe\n\n";
 
-    std::cout << "Player 1 (X) - Player 2 (O)" << std::endl << std::endl;
+    std::cout << "Player 1 (X) - Player 2 (O) " << k << std::endl << std::endl;
     std::cout << std::endl;
 
     for(int i = 1; i < 8; i += 3) {
@@ -82,16 +87,27 @@ int winIndexes[8][3] =
     {1,5,9},
     {3,5,7},
 };
-bool CheckIfSame()
+int winnerCheck()
 {
     for (int i = 0; i < 8; i++)
     {
-        for (int j = 0;j < 3; j++)
+        if (table[winIndexes[i][0]] == table[winIndexes[i][1]] &&
+        table[winIndexes[i][0]] == table[winIndexes[i][2]])
         {
-            int selectedElem = winIndexes[i][j];
-            
+            return 1;
+        }
+        else
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                if (table[winIndexes[i][j]] != 'X' && table[winIndexes[i][j]] != 'O')
+                {
+                    return -1;
+                }
+            }
         }
     }
+    return 0;
 }
 int SetCell(int choice, char mark)
 {
