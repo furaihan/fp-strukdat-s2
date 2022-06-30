@@ -1,5 +1,6 @@
 #pragma once
 #include "iostream"
+#include "gameLogic.h"
 #include "player.h"
 #include "../include/queue.h"
 #include "../include/myLinkedList.h"
@@ -10,9 +11,12 @@
 Queue<Player> players;
 Player *playerArray;
 
+void SortScore();
+void SearchPlayer();
+void PopulatePlayer();
 void DrawLeaderboard()
 {
-    Node<Player> *temp = players.Head();
+    SortScore();
     std::cout << "===========================" << std::endl;
     std::cout << "Rank      Nama        Score" << std::endl;
     std::cout << "===========================" << std::endl;
@@ -21,6 +25,7 @@ void DrawLeaderboard()
     {
         std::cout << i+1 << "\t\t" << playerArray[i].name << "\t\t" << playerArray[i].score << std::endl;
     }
+    SearchPlayer();
 }
 void SortScore()
 {
@@ -32,7 +37,7 @@ void SortScore()
         temp = temp->next;
         i++;
     }
-    for(int i=0; i<10; i++)
+    for(int i=0; i<11; i++)
     {
         for(int j=0; i<10; i++)
         {
@@ -42,10 +47,6 @@ void SortScore()
             }
         }
     }
-}
-void SearchScore()
-{
-
 }
 void PopulatePlayer()
 {
