@@ -5,8 +5,8 @@
 char *table;
 int counter = 1;
 int counter2 = 0;
-player player1;
-player player2;
+Player player1;
+Player player2;
 const std::string cellLine = "     |     |     ";
 const std::string cellLineWithDash = "_____|_____|_____";
 int turn = 1, choice, k;
