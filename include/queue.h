@@ -60,5 +60,18 @@ template <class T> class Queue
         count--;
         delete hapus;
     }
+    void Clear()
+    {
+        Node<T> *bantu, * hapus;
+        bantu = head;
+        while (bantu->next != tail)
+        {
+            hapus = bantu;
+            bantu = bantu->next;
+            delete hapus;
+        }
+        head = NULL;
+        tail = NULL;
+    }
 
 };

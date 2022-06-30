@@ -18,4 +18,6 @@ int main()
     }
     int gameState = 0;
     StartMenu();
+    delete[] playerArray;
+    players.Clear();
 }

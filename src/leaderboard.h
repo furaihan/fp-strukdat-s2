@@ -23,7 +23,7 @@ void DrawLeaderboard()
     
     for(int i=0; i<10; i++)
     {
-        std::cout << i+1 << "\t\t" << playerArray[i].name << "\t\t" << playerArray[i].score << std::endl;
+        std::cout << i+1 << "\t\t" << (playerArray + i)->name << "\t\t" << (playerArray + i)->score << std::endl;
     }
     SearchPlayer();
 }
@@ -33,7 +33,9 @@ void SortScore()
     int i = 0;
     while (temp->next != NULL)
     {
-        *(playerArray + i) =temp->data;
+        Player dataTemp = temp->data;
+        (playerArray + i)->name = dataTemp.name;
+        (playerArray + i)->score = dataTemp.score;
         temp = temp->next;
         i++;
     }

@@ -1,6 +1,7 @@
 #pragma once
 #include "iostream"
 #include "node.h"
+#include "queue.h"
 template <class T> class MyLinkedList
 {
     Node<T> *head, *tail;
@@ -9,6 +10,11 @@ template <class T> class MyLinkedList
     {
         head = NULL;
         tail = NULL;
+    }
+    MyLinkedList(Queue<T> q)
+    {
+        head = q.Head();
+        tail = q.Tail();
     }
     //encapsulation for head element
     Node<T> *First()

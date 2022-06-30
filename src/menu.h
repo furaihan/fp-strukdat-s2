@@ -72,6 +72,7 @@ void StartMenu()
             }
             else
             {
+                system("cls");
                 DrawLeaderboard();
                 cout << "Tekan tombol apapun untuk kembali ke menu" << endl;
                 getch();
