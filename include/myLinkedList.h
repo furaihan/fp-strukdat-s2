@@ -145,7 +145,6 @@ template <class T> class MyLinkedList
         }
         head = NULL;
         tail = NULL;
-        printf("All nodes are deleted successfully");
     }
     void PrintList()
     {

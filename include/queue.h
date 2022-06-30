@@ -6,11 +6,13 @@ template <class T> class Queue
 {
     private:
     Node<T> *head, *tail;
+    int count;
 
     public:
     Queue()
     {
-        *head = *tail = NULL;
+        head = tail = NULL;
+        count = 0;
     }
     Node<T> *Head()
     {
@@ -24,19 +26,24 @@ template <class T> class Queue
     {
         return head = NULL;
     }
+    int Count()
+    {
+        return count;
+    }
     void Enqueue(T item)
     {
-        Node<T> *temp = new Node<T>;
-
-        temp->data = item;
-        temp->next = NULL;
+        Node<T> *newNode = new Node<T>;
+        newNode->data = item;
         if (Empty())
         {
-            head = tail = temp;
+            newNode->next = NULL;
+            head = newNode;
+            tail = newNode;
             return;
         }
-        tail->next = temp;
-        tail = temp;
+        newNode->next = head;
+        head = newNode;
+        count++;
     }
     void Dequeue()
     {
@@ -50,6 +57,7 @@ template <class T> class Queue
         {
             tail = NULL;
         }
+        count--;
         delete hapus;
     }
 
