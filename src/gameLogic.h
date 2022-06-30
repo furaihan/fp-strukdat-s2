@@ -1,22 +1,27 @@
 #pragma once
 #include "iostream"
+#include "player.h"
 
 char *table;
-char *dualTable[3][3];
+int counter = 1;
+int counter2 = 0;
+player player1;
+player player2;
 const std::string cellLine = "     |     |     ";
 const std::string cellLineWithDash = "_____|_____|_____";
 int turn = 1, choice, k;
 char mark;
 void DrawBoard();
-int winnerCheck();
+int WinnerCheck();
 int CheckWin();
 int SetCell(int, char);
+bool IsDraw();
 void StartGame()
 {
     do {
         DrawBoard();
         turn = (turn % 2) ? 1 : 2;
-
+        std::cout << counter2 << std::endl;
         std::cout << "Player " << turn << ", enter a number:  ";
         std::cin >> choice;
 
@@ -29,7 +34,7 @@ void StartGame()
             std::cin.ignore();
             std::cin.get();
         }
-        k = winnerCheck();
+        k = WinnerCheck();
         turn++;
     } while(k == -1);
     DrawBoard();
@@ -61,21 +66,6 @@ void DrawBoard()
         }
     }
 }
-int CheckWin()
-{
-    for(int i = 1; i < 10; i++) {
-        if((i % 3 == 1 && (table[i] == table[i+1] && table[i+1] == table[i+2])) or 
-                (i <= 3 && (table[i] == table[i+3] && table[i+3] == table[i+6])) or 
-                (i == 1 && (table[1] == table[5] && table[5] == table[9])) or 
-                (i == 3 && (table[3] == table[5] && table[5] == table[7]))) {
-            return 1;
-        }
-        if(table[i] == '0' + i) {
-            return -1;
-        }
-    }
-    return 0;
-}
 int winIndexes[8][3] = 
 {
     {1,2,3},
@@ -87,7 +77,7 @@ int winIndexes[8][3] =
     {1,5,9},
     {3,5,7},
 };
-int winnerCheck()
+int WinnerCheck()
 {
     for (int i = 0; i < 8; i++)
     {
@@ -96,7 +86,7 @@ int winnerCheck()
         {
             return 1;
         }
-        else
+        /*else
         {
             for (int j = 0; j < 3; j++)
             {
@@ -105,9 +95,10 @@ int winnerCheck()
                     return -1;
                 }
             }
-        }
+        }*/
     }
-    return 0;
+    if (IsDraw()) return 0;
+    return -1;
 }
 int SetCell(int choice, char mark)
 {
@@ -117,4 +108,18 @@ int SetCell(int choice, char mark)
     } else {
         return -1;
     }
+}
+bool IsDraw()
+{
+    counter2 = 0;
+    counter = 1;
+    while (counter < 10)
+    {
+        if (table[counter] != 'X' && table[counter] != 'O')
+        {
+            counter2++;
+        }
+        counter++;
+    }
+    return counter2 == 0;
 }
