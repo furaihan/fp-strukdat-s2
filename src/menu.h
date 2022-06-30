@@ -2,6 +2,7 @@
 #include <iostream>
 #include "gameLogic.h"
 #include <stdlib.h>
+#include "conio.h"
 using namespace std;
 
 void StartMenu()
@@ -22,8 +23,8 @@ void StartMenu()
         if(pil == 1)
         {
             StartGame();
-            cout << "Tekan enter untuk kembali ke menu" << endl;
-            system("pause");
+            cout << "Tekan tombol apapun untuk kembali ke menu" << endl;
+            getch();
             continue;
         }
         else if(pil == 2)
@@ -51,8 +52,11 @@ void StartMenu()
                     system("pause");
                 } else
                 {
-                    cout << "Pilihan tidak tersedia!" << endl;
-                    system("pause");
+                    if (pil2 != 0)
+                    {
+                        cout << "Pilihan tidak tersedia!" << endl;
+                        system("pause");
+                    }
                 }
                 
                 
@@ -61,11 +65,20 @@ void StartMenu()
         }
         else if(pil == 3)
         {
-
+            if (!gameStarted)
+            {
+                cout << "Silahkan play game terlebih dahulu untuk melihat leaderboard" << endl;
+                system("pause");
+            }
+            else
+            {
+                DrawLeaderboard();
+                cout << "Tekan tombol apapun untuk kembali ke menu" << endl;
+                getch();
+            }
         }
         else if(pil == 4)
         {
-
         }
         else
         {

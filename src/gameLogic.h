@@ -1,28 +1,31 @@
 #pragma once
 #include "iostream"
 #include "player.h"
+#include "leaderboard.h"
 
 char *table;
-int counter = 1;
-int counter2 = 0;
 Player player1;
 Player player2;
+Player *winner = NULL;
+std::string nameTurn = "";
 const std::string cellLine = "     |     |     ";
 const std::string cellLineWithDash = "_____|_____|_____";
 int turn = 1, choice, k;
 char mark;
+bool gameStarted = false;
 void DrawBoard();
 int WinnerCheck();
 int CheckWin();
 int SetCell(int, char);
 bool IsDraw();
+int CalculateScore();
 void StartGame()
 {
     do {
         DrawBoard();
+        nameTurn = (turn % 2) ? player1.name : player2.name;
         turn = (turn % 2) ? 1 : 2;
-        std::cout << counter2 << std::endl;
-        std::cout << "Player " << turn << ", enter a number:  ";
+        std::cout << nameTurn << ", enter a number:  ";
         std::cin >> choice;
 
         mark = (turn == 1) ? 'X' : 'O';
@@ -40,7 +43,16 @@ void StartGame()
     DrawBoard();
 
     if(k == 1) {
-        std::cout << "==>\aPlayer " << --turn <<" win ";
+        std::cout << nameTurn <<" win ";
+        printf("tes 1");
+        *winner = turn == 2 ? player1 : player2;
+        printf("tes 2");
+        winner->score = CalculateScore();
+        printf("tes 3");
+        players.Enqueue(*winner);
+        printf("tes 4");
+        gameStarted = true;
+        printf("tes 5");
     } else {
         std::cout << "==>\aGame draw";
     }
@@ -50,7 +62,7 @@ void DrawBoard()
     system("cls");
     std::cout << "\n\n\tTic Tac Toe\n\n";
 
-    std::cout << "Player 1 (X) - Player 2 (O) " << k << std::endl << std::endl;
+    std::cout << player1.name << " (X) - "<< player2.name <<" (O) " << k << std::endl << std::endl;
     std::cout << std::endl;
 
     for(int i = 1; i < 8; i += 3) {
@@ -111,8 +123,8 @@ int SetCell(int choice, char mark)
 }
 bool IsDraw()
 {
-    counter2 = 0;
-    counter = 1;
+    int counter2 = 0;
+    int counter = 1;
     while (counter < 10)
     {
         if (table[counter] != 'X' && table[counter] != 'O')
@@ -122,4 +134,29 @@ bool IsDraw()
         counter++;
     }
     return counter2 == 0;
+}
+int CalculateScore()
+{
+    int counter2 = 0;
+    int counter = 1;
+    while (counter < 10)
+    {
+        if (table[counter] != 'X' && table[counter] != 'O')
+        {
+            counter2++;
+        }
+        counter++;
+    }
+    return counter2 * 20 + 100;
+}
+void SearchPlayer()
+{
+    for (int i = 0; i < 11; i++)
+    {
+        if (playerArray[i].name == winner->name)
+        {
+            std::cout << "Pemanang terakhir ada di ranking " << i + 1;
+            return;
+        }
+    }
 }
