@@ -1,6 +1,6 @@
 #pragma once
 #include "../src/player.h"
-class Node
+struct Node
 {
     public:
     Player data;

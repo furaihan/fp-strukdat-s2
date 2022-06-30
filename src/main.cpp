@@ -19,5 +19,8 @@ int main()
     int gameState = 0;
     StartMenu();
     delete[] playerArray;
+    delete[] table;
     players.Clear();
+    std::cout<< "All memory cleared successfully\n";
+    system("pause");
 }

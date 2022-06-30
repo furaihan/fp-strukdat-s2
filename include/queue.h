@@ -11,7 +11,8 @@ class Queue
     public:
     Queue()
     {
-        head = tail = NULL;
+        head = NULL;
+        tail = NULL;
         count = 0;
     }
     Node *Head()
@@ -24,7 +25,7 @@ class Queue
     }
     bool Empty()
     {
-        return head = NULL;
+        return head == NULL;
     }
     int Count()
     {
@@ -32,19 +33,19 @@ class Queue
     }
     void Enqueue(Player item)
     {
-        Node *newNode = new Node;
-        newNode->data = item;
+        Node *newNode = new Node;         
+        newNode->data = item;             
         if (Empty())
-        {
-            head = newNode;
+        {                  
+            head = newNode;                                    
         }
         else
-        {
-            tail->next = newNode;
-        }
-        tail = newNode;
-        tail->next = NULL;
-        count++;
+        { 
+            tail->next = newNode;                    
+        }         
+        tail = newNode;    
+        tail->next = NULL; 
+        count++;   
     }
     void Dequeue()
     {

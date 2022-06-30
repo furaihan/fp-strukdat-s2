@@ -43,9 +43,10 @@ void StartGame()
     DrawBoard();
 
     if(k == 1) {
-        std::cout << nameTurn <<" win ";
-        winner = turn == 2 ? player1 : player2;
+        std::cout << nameTurn <<" win \n";
+        winner.name = nameTurn;
         winner.score = CalculateScore();
+        std::cout << nameTurn << " score is " << winner.score << std::endl;
         players.Enqueue(winner);
         gameStarted = true;
     } else {
@@ -146,7 +147,7 @@ int CalculateScore()
 }
 void SearchPlayer()
 {
-    for (int i = 0; i < 11; i++)
+    for (int i = 0; i < players.Count(); i++)
     {
         if (playerArray[i].name == winner.name)
         {

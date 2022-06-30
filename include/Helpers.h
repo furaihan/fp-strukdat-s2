@@ -108,6 +108,7 @@ string IntToString(int a)
     temp << a;
     return temp.str();
 }
+//swap memory reference value from a to b and vice versa
 template<typename T>
 void tukar(T *a, T *b)
 {

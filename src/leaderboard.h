@@ -38,7 +38,7 @@ void SortScore()
         temp = temp->next;
         i++;
     }
-    for(int i=0; i<11; i++)
+    for(int i=0; i < players.Count(); i++)
     {
         for(int j=0; i<10; i++)
         {
@@ -54,10 +54,10 @@ void PopulatePlayer()
     srand((unsigned int)time(NULL));
     for (int i = 0; i < 10; i++)
     {
-        Player *player = new Player;
-        player->name = "COM " + IntToString(i + 1);
-        player->score = ((rand() % 4) * 20) + 100;
-        players.Enqueue(*player);
+        Player player;
+        player.name = "COM " + IntToString(i + 1);
+        player.score = ((rand() % 4) * 20) + 100;
+        players.Enqueue(player);
     }
-    playerArray = new Player[11];
+    playerArray = new Player[50];
 }
