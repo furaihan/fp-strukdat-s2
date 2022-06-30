@@ -3,12 +3,11 @@
 #include "gameLogic.h"
 #include "player.h"
 #include "../include/queue.h"
-#include "../include/myLinkedList.h"
 #include "../include/Helpers.h"
 #include "../include/node.h"
 #include "ctime"
 
-Queue<Player> players;
+Queue players;
 Player *playerArray;
 
 void SortScore();
@@ -29,7 +28,7 @@ void DrawLeaderboard()
 }
 void SortScore()
 {
-    Node<Player> *temp = players.Head();
+    Node *temp = players.Head();
     int i = 0;
     while (temp->next != NULL)
     {

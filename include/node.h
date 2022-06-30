@@ -1,7 +1,8 @@
 #pragma once
-template <class T> class Node
+#include "../src/player.h"
+class Node
 {
     public:
-    T data;
+    Player data;
     Node *next;
 };

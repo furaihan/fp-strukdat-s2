@@ -2,10 +2,10 @@
 #include "iostream"
 #include "node.h"
 
-template <class T> class Queue
+class Queue
 {
     private:
-    Node<T> *head, *tail;
+    Node *head, *tail;
     int count;
 
     public:
@@ -14,11 +14,11 @@ template <class T> class Queue
         head = tail = NULL;
         count = 0;
     }
-    Node<T> *Head()
+    Node *Head()
     {
         return head;
     }
-    Node<T> *Tail()
+    Node *Tail()
     {
         return tail;
     }
@@ -30,19 +30,20 @@ template <class T> class Queue
     {
         return count;
     }
-    void Enqueue(T item)
+    void Enqueue(Player item)
     {
-        Node<T> *newNode = new Node<T>;
+        Node *newNode = new Node;
         newNode->data = item;
         if (Empty())
         {
-            newNode->next = NULL;
             head = newNode;
-            tail = newNode;
-            return;
         }
-        newNode->next = head;
-        head = newNode;
+        else
+        {
+            tail->next = newNode;
+        }
+        tail = newNode;
+        tail->next = NULL;
         count++;
     }
     void Dequeue()
@@ -51,7 +52,7 @@ template <class T> class Queue
         {
             return;
         }
-        Node<T> hapus = head;
+        Node *hapus = head;
         head = head->next;
         if (Empty())
         {
@@ -62,7 +63,7 @@ template <class T> class Queue
     }
     void Clear()
     {
-        Node<T> *bantu, * hapus;
+        Node *bantu, * hapus;
         bantu = head;
         while (bantu->next != tail)
         {
@@ -72,6 +73,6 @@ template <class T> class Queue
         }
         head = NULL;
         tail = NULL;
+        count = 0;
     }
-
 };
