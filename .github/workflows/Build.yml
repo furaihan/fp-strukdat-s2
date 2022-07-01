@@ -10,7 +10,7 @@ jobs:
       run:
         shell: pwsh
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v2.4.2
     - name: Create Compile Folder
       run: |
         &mkdir ./compile
