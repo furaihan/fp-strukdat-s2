@@ -17,36 +17,44 @@ void DrawLeaderboard()
 {
     SortScore();
     std::cout << "===========================" << std::endl;
-    std::cout << "Rank      Nama        Score" << std::endl;
+    std::cout << "Rank ||     Nama   || Score" << std::endl;
     std::cout << "===========================" << std::endl;
     
     for(int i=0; i<10; i++)
     {
-        std::cout << i+1 << "\t\t" << (playerArray + i)->name << "\t\t" << (playerArray + i)->score << std::endl;
+        int no = i+1;
+        const char *nama = playerArray[i].name.c_str();
+        int score = (playerArray + i)->score;
+        printf("|%4i || %9s || %5i|\n", no, nama, score);
+        //std::cout << i+1 << "\t" << (playerArray + i)->name << "\t\t" << (playerArray + i)->score << std::endl;
     }
     SearchPlayer();
 }
 void SortScore()
 {
     Node *temp = players.Head();
-    int i = 0;
-    while (temp->next != NULL)
+    int o = 0;
+    while (temp != NULL)
     {
         Player dataTemp = temp->data;
-        (playerArray + i)->name = dataTemp.name;
-        (playerArray + i)->score = dataTemp.score;
+        (playerArray + o)->name = dataTemp.name;
+        (playerArray + o)->score = dataTemp.score;
+        std::cout << o+1 << ". " << dataTemp.name << std::endl;
         temp = temp->next;
-        i++;
+        o++;
     }
-    for(int i=0; i < players.Count(); i++)
+    int i, j;
+    Player playerKey;
+    for (i = 1; i < players.Count(); i++)
     {
-        for(int j=0; i<10; i++)
+        playerKey = playerArray[i];
+        j = i - 1;
+        while (j >= 0 && playerArray[j].score < playerKey.score)
         {
-            if(playerArray[j].score<playerArray[j+1].score)
-            {
-                tukar(&playerArray[i], &playerArray[j+1]);
-            }
+            playerArray[j + 1] = playerArray[j];
+            j = j - 1;
         }
+        playerArray[j + 1] = playerKey;
     }
 }
 void PopulatePlayer()
@@ -54,10 +62,10 @@ void PopulatePlayer()
     srand((unsigned int)time(NULL));
     for (int i = 0; i < 10; i++)
     {
-        Player player;
-        player.name = "COM " + IntToString(i + 1);
-        player.score = ((rand() % 4) * 20) + 100;
-        players.Enqueue(player);
+        Player *player = new Player;
+        player->name = "COM " + IntToString(i + 1);
+        player->score = ((rand() % 4) * 20) + 100;
+        players.Enqueue(*player);
     }
     playerArray = new Player[50];
 }

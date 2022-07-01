@@ -6,7 +6,7 @@
 char *table;
 Player player1;
 Player player2;
-Player winner;
+Player *winner;
 std::string nameTurn = "";
 const std::string cellLine = "     |     |     ";
 const std::string cellLineWithDash = "_____|_____|_____";
@@ -44,10 +44,11 @@ void StartGame()
 
     if(k == 1) {
         std::cout << nameTurn <<" win \n";
-        winner.name = nameTurn;
-        winner.score = CalculateScore();
-        std::cout << nameTurn << " score is " << winner.score << std::endl;
-        players.Enqueue(winner);
+        winner = new Player;
+        winner->name = nameTurn;
+        winner->score = CalculateScore();
+        std::cout << nameTurn << " score is " << winner->score << std::endl;
+        players.Enqueue(*winner);
         gameStarted = true;
     } else {
         std::cout << "==>\aGame draw";
@@ -149,10 +150,11 @@ void SearchPlayer()
 {
     for (int i = 0; i < players.Count(); i++)
     {
-        if (playerArray[i].name == winner.name)
+        if (playerArray[i].name == winner->name)
         {
-            std::cout << "Pemanang terakhir ada di ranking " << i + 1;
+            std::cout << "Pemanang terakhir ada di ranking " << i + 1 << std::endl;
             return;
         }
     }
+    std::cout << "Pemenang terakhir tidak masuk ke leaderboard" << endl;
 }
