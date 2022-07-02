@@ -16,18 +16,19 @@ void PopulatePlayer();
 void DrawLeaderboard()
 {
     SortScore();
-    std::cout << "===========================" << std::endl;
-    std::cout << "Rank ||     Nama   || Score" << std::endl;
-    std::cout << "===========================" << std::endl;
+    std::cout << "=================================" << std::endl;
+    std::cout << "|| Rank ||     Nama   || Score ||" << std::endl;
+    std::cout << "=================================" << std::endl;
     
     for(int i=0; i<10; i++)
     {
         int no = i+1;
         const char *nama = playerArray[i].name.c_str();
         int score = (playerArray + i)->score;
-        printf("|%4i || %9s || %5i|\n", no, nama, score);
+        printf("|| %4i || %10s || %5i ||\n", no, nama, score);
         //std::cout << i+1 << "\t" << (playerArray + i)->name << "\t\t" << (playerArray + i)->score << std::endl;
     }
+    std::cout << "=================================" << std::endl;
     SearchPlayer();
 }
 void SortScore()

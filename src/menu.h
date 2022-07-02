@@ -42,10 +42,10 @@ void StartMenu()
                 {
                     std::cout << "Silahkan masukan nama Player1(Maks 8 karakter): ";
                     std::cin.ignore(1000, '\n'); 
-                    getline(std::cin, player1.name);
+                    getline(std::cin, temporaryName);
                     if (IsNameValid(temporaryName) && temporaryName.size() <= 8)
                     {
-
+                        player1.name = temporaryName;
                     }
                     else
                     {
@@ -53,26 +53,33 @@ void StartMenu()
                     }
                     std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
                     getch();
-                } else if (pil2 == 2)
+                } 
+                else if (pil2 == 2)
                 {   
                     std::cout << "Silahkan masukan nama Player2(Maks 8 karakter): "; 
-                    std::cin.ignore();
-                    getline(std::cin, player2.name);
+                    std::cin.ignore(1000, '\n'); 
+                    getline(std::cin, temporaryName);
+                    if (IsNameValid(temporaryName) && temporaryName.size() <= 8)
+                    {
+                        player2.name = temporaryName;
+                    }
+                    else
+                    {
+                        std::cout << "Nama tidak valid, silahkan ulangi" << std::endl;
+                    }
                     std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
                     getch();
-                } else
+                } 
+                else if (pil2 == 0)
                 {
-                    if (pil2 != 0)
-                    {
-                        std::cout << "Pilihan tidak tersedia!" << std::endl;
-                        std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-                        getch();
-                    }
+                } 
+                else
+                {
+                    std::cout << "Pilihan tidak tersedia!" << std::endl;
+                    std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
+                    getch();
                 }
-                
-                
-            } while (pil2 != 0);
-            
+            } while (pil2 != 0);            
         }
         else if(pil == 3)
         {
@@ -99,7 +106,6 @@ void StartMenu()
             std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
             getch();
         }
-    } while (pil != 4);
-    
+    } while (pil != 4);  
     return;
 }
