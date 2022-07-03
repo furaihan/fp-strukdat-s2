@@ -10,6 +10,7 @@ int main()
     player1.score = 0;
     player2.name = "Player 2";
     player2.score = 0;
+    srand((unsigned int)time(NULL));
     PopulatePlayer();
     table = new char(9);
     for (int i = 0; i < 10; i++)
@@ -17,6 +18,7 @@ int main()
         *(table + i) = '0' + i;
     }
     int gameState = 0;
+    DrawLoading();
     StartMenu();
     delete[] playerArray;
     delete[] table;

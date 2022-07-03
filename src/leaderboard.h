@@ -40,7 +40,6 @@ void SortScore()
         Player dataTemp = temp->data;
         (playerArray + o)->name = dataTemp.name;
         (playerArray + o)->score = dataTemp.score;
-        std::cout << o+1 << ". " << dataTemp.name << std::endl;
         temp = temp->next;
         o++;
     }
@@ -60,13 +59,12 @@ void SortScore()
 }
 void PopulatePlayer()
 {
-    srand((unsigned int)time(NULL));
     for (int i = 0; i < 10; i++)
     {
-        Player *player = new Player;
-        player->name = "COM " + IntToString(i + 1);
-        player->score = ((rand() % 4) * 20) + 100;
-        players.Enqueue(*player);
+        Player player;
+        player.name = "COM " + IntToString(i + 1);
+        player.score = ((rand() % 4) * 20) + 100;
+        players.Enqueue(player);
     }
     playerArray = new Player[50];
 }

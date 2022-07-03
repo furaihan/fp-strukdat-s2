@@ -2,6 +2,9 @@
 #include "iostream"
 #include "player.h"
 #include "leaderboard.h"
+#include "chrono"
+#include "thread"
+#include "windows.h"
 
 char *table;
 Player player1;
@@ -19,6 +22,8 @@ int CheckWin();
 int SetCell(int, char);
 bool IsDraw();
 int CalculateScore();
+void DrawLoading();
+void ResetTable();
 void StartGame()
 {
     do {
@@ -51,8 +56,9 @@ void StartGame()
         players.Enqueue(*winner);
         gameStarted = true;
     } else {
-        std::cout << "==>\aGame draw";
+        std::cout << "==>\aGame draw\n";
     }
+    ResetTable();
 }
 void DrawBoard()
 {
@@ -74,6 +80,47 @@ void DrawBoard()
             std::cout << cellLine << std::endl << std::endl;
         }
     }
+}
+void DrawLoading()
+{
+    system("cls");
+    std::string files[8] = 
+    {
+        "standard c++ library", "main.cpp", "menu.h", "player.h", "leaderboard.h", "node.h", "queue.h", "helpers.h"
+    };
+    char *loadingBar = new char[25];
+    for (int i = 0; i < 25; i++)
+    {
+        *(loadingBar + i) = '.';
+    }
+    for (int i = 0; i <= 100; i++)
+    {
+        std::string file;
+        if (i < 30) file = files[0];
+        else if (i < 40) file = files[1];
+        else if (i < 50) file = files[3];
+        else if (i < 60) file = files[4];
+        else if (i < 70) file = files[5];
+        else if (i < 80) file = files[6];
+        else if (i == 100) file = "Complete";
+        else file = files[7];
+        printf("   Loading %s\n[", file.c_str());
+        for (int j = 0; j < 25; j++) printf("%c", *(loadingBar + j));
+        printf("] %i%%",i);
+        std::this_thread::sleep_for(std::chrono::milliseconds((rand() % 95) + 20));
+        //Sleep((rand() % 95) + 20);
+        if (*(loadingBar + (i / 4)) != '#') *(loadingBar + (i / 4)) = '#';
+        system("cls");
+    }
+    delete[] loadingBar;
+}
+void ResetTable()
+{
+    for (int i = 0; i < 10; i++)
+    {
+        *(table + i) = '0' + i;
+    }
+    turn = 1;
 }
 int winIndexes[8][3] = 
 {
@@ -156,5 +203,5 @@ void SearchPlayer()
             return;
         }
     }
-    std::cout << "Pemenang terakhir tidak masuk ke leaderboard" << endl;
+    std::cout << "Pemenang terakhir tidak masuk ke leaderboard" << std::endl;
 }

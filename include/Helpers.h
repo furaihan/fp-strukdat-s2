@@ -18,15 +18,14 @@
 #include <sstream>
 #include <fstream>
 
-using namespace std;
 
 /* fungsi untuk memeriksa apakah dalam angka terdapat huruf 
     - akan true jika inputan tidak ada string (all int)
     - akan false jika inputan terdapat string (sekali dapat) */
-bool IsStringAllDigit(const string &str)
+bool IsStringAllDigit(const std::string &str)
 {
     //inisialisasi instansi dari iterator string
-    string::const_iterator it = str.begin();
+    std::string::const_iterator it = str.begin();
     //jika iterator bukan digit, maka hentikan loop
     while (it != str.end() && isdigit(*it))
         ++it;
@@ -34,7 +33,7 @@ bool IsStringAllDigit(const string &str)
     return !str.empty() && it == str.end();
 }
 
-bool IsNameValid(const string &name)
+bool IsNameValid(const std::string &name)
 {
     /*
         Allowed characters:
@@ -49,9 +48,9 @@ bool IsNameValid(const string &name)
             return false;
     }
     //cek ulang apakah semua karakter terdiri atas [spasi] ' - atau .
-    string::const_iterator first = name.begin();
-    string::const_iterator last = name.end();
-    string::const_iterator it = name.begin();
+    std::string::const_iterator first = name.begin();
+    std::string::const_iterator last = name.end();
+    std::string::const_iterator it = name.begin();
     while (it != last)
     {
         int asciiCode = int(*it);
@@ -63,9 +62,9 @@ bool IsNameValid(const string &name)
 }
 
 /* fungsi untuk mengubah string ke lowercase */
-string MakeLowercase(const string &str)
+std::string MakeLowercase(const std::string &str)
 {
-    string result = str;
+    std::string result = str;
     for (int i = 0; i < str.size(); i++)
     {
         if (result[i] > 64 && result[i] < 91)
@@ -75,9 +74,9 @@ string MakeLowercase(const string &str)
 }
 
 /* fungsi untuk mengubah string ke titlecase */
-string Capitalize(const string &str)
+std::string Capitalize(const std::string &str)
 {
-    string result = str;
+    std::string result = str;
     int len = str.size();
     for (int i = 0; i < len; i++)
     {
@@ -93,18 +92,18 @@ string Capitalize(const string &str)
 }
 
 /* fungsi untuk mengkonversi string ke integer */
-int StrToInt(string str)
+int StrToInt(std::string str)
 {
     int isInt;
-    stringstream ToInt(str);
+    std::stringstream ToInt(str);
     ToInt >> isInt;
     return isInt;
 }
 
 /* fungsi untuk mengkonversi integer ke string */
-string IntToString(int a)
+std::string IntToString(int a)
 {
-    ostringstream temp;
+    std::ostringstream temp;
     temp << a;
     return temp.str();
 }

@@ -85,7 +85,7 @@ void StartMenu()
         {
             if (!gameStarted)
             {
-                std::cout << "Silahkan play game terlebih dahulu untuk melihat leaderboard" << std::endl;
+                std::cout << "Silahkan menangkan game terlebih dahulu untuk melihat leaderboard" << std::endl;
                 std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
                 getch();
             }

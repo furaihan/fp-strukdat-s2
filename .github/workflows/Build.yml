@@ -1,4 +1,4 @@
-name: Build c++98
+name: Build c++11
 
 on: [push, pull_request]
 
@@ -28,7 +28,7 @@ jobs:
       run: echo "::set-output name=today::$(date +'%d%m%y-%H%M%S')"
     - name : Build main.cpp
       run: |
-       & '${{ steps.setup.outputs.gxx }}' -Wall -Wextra -o ./compile/result_${{ steps.date.outputs.today }} ./src/main.cpp -std=c++98 -static
+       & '${{ steps.setup.outputs.gxx }}' -Wall -Wextra -o ./compile/result_${{ steps.date.outputs.today }} ./src/main.cpp -std=c++11 -static
     - name : Upload Artifact 
       uses : actions/upload-artifact@v3.1.0
       with:
