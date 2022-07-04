@@ -2,6 +2,7 @@
 #include "gameLogic.h"
 #include "leaderboard.h"
 #include "menu.h"
+#include "ctime"
 
 int main()
 {
@@ -16,7 +17,6 @@ int main()
     {
         *(table + i) = '0' + i;
     }
-    int gameState = 0;
     DrawLoading();
     StartMenu();
     delete[] playerArray;

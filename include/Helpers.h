@@ -32,7 +32,7 @@ bool IsStringAllDigit(const std::string &str)
     //mengembalikan kondisi apakah iterator sudah mencapai akhir
     return !str.empty() && it == str.end();
 }
-
+//untuk validasi nama apakah mengandung karakter yang tidak valid
 bool IsNameValid(const std::string &name)
 {
     /*
@@ -107,7 +107,7 @@ std::string IntToString(int a)
     temp << a;
     return temp.str();
 }
-//swap memory reference value from a to b and vice versa
+//untuk menukar alamat memori pada saat sorting
 template<typename T>
 void tukar(T *a, T *b)
 {

@@ -76,15 +76,4 @@ class Queue
         tail = NULL;
         count = 0;
     }
-    void PrintAllData()
-    {
-        Node *bantu = head;
-        int counter = 1;
-        while (bantu != NULL)
-        {
-            std::cout << "Data pada node #" << counter++ << " = " << bantu->data << std::endl;
-            bantu = bantu->next;
-        }
-        std::cout << std::endl;
-    }
 };

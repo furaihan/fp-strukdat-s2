@@ -65,7 +65,7 @@ void DrawBoard()
     system("cls");
     std::cout << "\n\n\tTic Tac Toe\n\n";
 
-    std::cout << player1.name << " (X) - "<< player2.name <<" (O) " << k << std::endl << std::endl;
+    std::cout << player1.name << " (X) - "<< player2.name <<" (O) " << std::endl << std::endl;
     std::cout << std::endl;
 
     for(int i = 1; i < 8; i += 3) {
@@ -107,6 +107,7 @@ void DrawLoading()
         printf("   Loading %s\n[", file.c_str());
         for (int j = 0; j < 25; j++) printf("%c", *(loadingBar + j));
         printf("] %i%%",i);
+        //delay_ms
         std::this_thread::sleep_for(std::chrono::milliseconds((rand() % 95) + 20));
         //Sleep((rand() % 95) + 20);
         if (*(loadingBar + (i / 4)) != '#') *(loadingBar + (i / 4)) = '#';
@@ -114,6 +115,7 @@ void DrawLoading()
     }
     delete[] loadingBar;
 }
+//untuk mereset tictactoe 
 void ResetTable()
 {
     for (int i = 0; i < 10; i++)
@@ -122,6 +124,7 @@ void ResetTable()
     }
     turn = 1;
 }
+
 int winIndexes[8][3] = 
 {
     {1,2,3},
@@ -179,6 +182,7 @@ bool IsDraw()
     }
     return counter2 == 0;
 }
+//menghitung score
 int CalculateScore()
 {
     int counter2 = 0;
@@ -193,6 +197,7 @@ int CalculateScore()
     }
     return counter2 * 20 + 100;
 }
+//mencari rank dari pemenang terakhir pada leaderboard
 void SearchPlayer()
 {
     for (int i = 0; i < players.Count(); i++)

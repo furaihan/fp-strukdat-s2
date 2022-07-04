@@ -5,7 +5,6 @@
 #include "../include/queue.h"
 #include "../include/Helpers.h"
 #include "../include/node.h"
-#include "ctime"
 
 Queue players;
 Player *playerArray;
@@ -35,6 +34,7 @@ void SortScore()
 {
     Node *temp = players.Head();
     int o = 0;
+    //memindahkan queue ke array dinamis
     while (temp != NULL)
     {
         Player dataTemp = temp->data;
@@ -43,6 +43,7 @@ void SortScore()
         temp = temp->next;
         o++;
     }
+    //insertion sort
     int i, j;
     Player playerKey;
     for (i = 1; i < players.Count(); i++)
@@ -57,6 +58,7 @@ void SortScore()
         playerArray[j + 1] = playerKey;
     }
 }
+//membuat player komputer secara random
 void PopulatePlayer()
 {
     for (int i = 0; i < 10; i++)
