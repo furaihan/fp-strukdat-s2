@@ -25,7 +25,7 @@ void DrawLeaderboard()
         int no = i+1;
         const char *nama = playerArray[i].name.c_str();
         int score = (playerArray + i)->score;
-        printf("|| %4i || %10s || %5i ||\n", no, nama, score);
+        printf("|| %-4i || %-10s || %-5i ||\n", no, nama, score);
         //std::cout << i+1 << "\t" << (playerArray + i)->name << "\t\t" << (playerArray + i)->score << std::endl;
     }
     std::cout << "=================================" << std::endl;

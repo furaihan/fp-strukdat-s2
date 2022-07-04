@@ -1,5 +1,4 @@
 #include "iostream"
-#include "windows.h"
 #include "gameLogic.h"
 #include "leaderboard.h"
 #include "menu.h"
