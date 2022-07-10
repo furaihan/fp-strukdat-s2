@@ -22,6 +22,7 @@ void DrawLeaderboard()
     for(int i=0; i<10; i++)
     {
         int no = i+1;
+        //c_str berfungsi untuk menkonversi string ke const char *
         const char *nama = playerArray[i].name.c_str();
         int score = (playerArray + i)->score;
         printf("|| %-4i || %-10s || %-5i ||\n", no, nama, score);
