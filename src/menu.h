@@ -10,7 +10,7 @@ void StartMenu()
     int pil2;
     do
     {
-        system("cls");
+        clear();
         std::cout << "=======================" << std::endl;
         std::cout << "       MAIN MENU       " << std::endl;
         std::cout << "=======================" << std::endl;
@@ -30,7 +30,7 @@ void StartMenu()
         {
             do
             {
-                system("cls");
+                clear();
                 std::cout << "Nama Player1 = " << player1.name << std::endl;
                 std::cout << "Nama Player2 = " << player2.name << std::endl << std::endl;
                 std::cout << "Tekan 1 untuk mengganti nama Player1" << std::endl;
@@ -91,7 +91,7 @@ void StartMenu()
             }
             else
             {
-                system("cls");
+                clear();
                 DrawLeaderboard();
                 std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
                 getch();

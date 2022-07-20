@@ -18,6 +18,12 @@
 #include <sstream>
 #include <fstream>
 
+#if defined(WIN32) || defined(_WIN32) || defined(__WIN32__) || defined(__NT__)
+#define IS_MICROSOFT_WINDOWS 1
+#else
+#define IS_MICROSOFT_WINDOWS 0
+#endif
+
 
 /* fungsi untuk memeriksa apakah dalam angka terdapat huruf 
     - akan true jika inputan tidak ada string (all int)
@@ -114,4 +120,15 @@ void tukar(T *a, T *b)
     T temp = *a;
     *a = *b;
     *b = temp;
+}
+void clear()
+{
+    if (IS_MICROSOFT_WINDOWS == 1) 
+    {
+        system("cls");
+    }
+    else
+    {
+        system("clear");
+    }
 }

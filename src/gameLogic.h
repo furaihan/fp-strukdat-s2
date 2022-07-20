@@ -2,31 +2,6 @@
 #include "iostream"
 #include "player.h"
 #include "leaderboard.h"
-/*
-    Chrono library
-chrono adalah nama header, tetapi juga sub-namespace: Semua elemen dalam header ini (kecuali untuk spesialisasi common_type) 
-tidak didefinisikan secara langsung di bawah namespace std (seperti kebanyakan library standar) tetapi di bawah namespace std::chrono
-Elemen-elemen dalam header ini berhubungan dengan waktu. Hal ini dilakukan terutama dengan menggunakan tiga konsep:
-
-Durasi
-Mereka mengukur rentang waktu, seperti satu menit, dua jam, atau sepuluh milidetik.
-Di library ini, mereka diwakili dengan objek dari templat kelas durasi, 
-yang menggabungkan representasi hitungan dan presisi periode 
-(misalnya, sepuluh milidetik memiliki sepuluh sebagai representasi hitungan dan milidetik sebagai presisi periode).
-
-Titik waktu
-Referensi ke titik waktu tertentu, seperti ulang tahun seseorang, 
-fajar hari ini, atau saat kereta berikutnya lewat.
-Di library ini, objek dari templat kelas time_point mengekspresikannya 
-dengan menggunakan durasi relatif terhadap epoch (yang merupakan titik tetap 
-dalam waktu yang umum untuk semua objek time_point menggunakan jam yang sama).
-
-jam
-framework yang menghubungkan titik waktu dengan waktu fisik nyata.
-Library ini menyediakan setidaknya tiga jam yang menyediakan sarana untuk mengekspresikan 
-waktu saat ini sebagai time_points: system_clock, steady_clock, dan high_resolution_clock.
-
-*/
 #include "chrono"
 #include "thread"                                                       /*Library yang berisi fungsi fungsi thread*/
 
@@ -91,7 +66,7 @@ void StartGame()
 }
 void DrawBoard()
 {
-    system("cls");
+    clear();
     std::cout << "\n\n\tTic Tac Toe\n\n";
 
     std::cout << player1.name << " (X) - "<< player2.name <<" (O) " << std::endl << std::endl;
@@ -110,10 +85,11 @@ void DrawBoard()
         }
     }
 }
-//fungsi untuk menampilkan fake loading screeen
+//fungsi untuk menampilkan fake loading screen
+//loading screen hanya gimmick saja, sebenarnya tidak memuat apa apa
 void DrawLoading()
 {
-    system("cls");
+    clear();
     std::string files[8] = 
     {
         "standard c++ library", "main.cpp", "menu.h", "player.h", "leaderboard.h", "node.h", "queue.h", "helpers.h"
@@ -147,7 +123,7 @@ void DrawLoading()
         std::this_thread::sleep_for(std::chrono::milliseconds((rand() % 95) + 20));
         //mengganti value array dari '.' menjadi '#'
         if (*(loadingBar + (i / 4)) != '#') *(loadingBar + (i / 4)) = '#';
-        system("cls");
+        clear();
     }
     delete[] loadingBar;
 }
