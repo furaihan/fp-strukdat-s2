@@ -2,7 +2,6 @@
 #include <iostream>
 #include "gameLogic.h"
 #include <stdlib.h>
-#include "conio.h"
 
 void StartMenu()
 {
@@ -23,7 +22,7 @@ void StartMenu()
         {
             StartGame();
             std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-            getch();
+            std::cin.get();
             continue;
         }
         else if(pil == 2)
@@ -51,8 +50,8 @@ void StartMenu()
                     {
                         std::cout << "Nama tidak valid, silahkan ulangi" << std::endl;
                     }
-                    std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-                    getch();
+                    std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                    std::cin.get();
                 } 
                 else if (pil2 == 2)
                 {   
@@ -67,8 +66,8 @@ void StartMenu()
                     {
                         std::cout << "Nama tidak valid, silahkan ulangi" << std::endl;
                     }
-                    std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-                    getch();
+                    std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                    std::cin.get();
                 } 
                 else if (pil2 == 0)
                 {
@@ -76,8 +75,8 @@ void StartMenu()
                 else
                 {
                     std::cout << "Pilihan tidak tersedia!" << std::endl;
-                    std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-                    getch();
+                    std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                    std::cin.get();
                 }
             } while (pil2 != 0);            
         }
@@ -86,15 +85,15 @@ void StartMenu()
             if (!gameStarted)
             {
                 std::cout << "Silahkan menangkan game terlebih dahulu untuk melihat leaderboard" << std::endl;
-                std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-                getch();
+                std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                std::cin.get();
             }
             else
             {
                 clear();
                 DrawLeaderboard();
-                std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-                getch();
+                std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                std::cin.get();
             }
         }
         else if(pil == 4)
@@ -103,8 +102,8 @@ void StartMenu()
         else
         {
             std::cout << "Pilihan yang anda inputkan tidak tersedia!" << std::endl;
-            std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
-            getch();
+            std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+            std::cin.get();
         }
     } while (pil != 4);  
     return;
