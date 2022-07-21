@@ -22,6 +22,7 @@ void StartMenu()
         {
             StartGame();
             std::cout << "Tekan tombol apapun untuk kembali ke menu" << std::endl;
+            std::cin.ignore();
             std::cin.get();
             continue;
         }
@@ -39,7 +40,7 @@ void StartMenu()
                 std::string temporaryName = "";
                 if(pil2 == 1)
                 {
-                    std::cout << "Silahkan masukan nama Player1(Maks 8 karakter): ";
+                    std::cout << "Silahkan masukan nama Player1 (Maks 8 karakter): ";
                     std::cin.ignore(1000, '\n'); 
                     getline(std::cin, temporaryName);
                     if (IsNameValid(temporaryName) && temporaryName.size() <= 8)
@@ -50,12 +51,12 @@ void StartMenu()
                     {
                         std::cout << "Nama tidak valid, silahkan ulangi" << std::endl;
                     }
-                    std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                    std::cout << "Tekan ENTER untuk kembali" << std::endl;
                     std::cin.get();
                 } 
                 else if (pil2 == 2)
                 {   
-                    std::cout << "Silahkan masukan nama Player2(Maks 8 karakter): "; 
+                    std::cout << "Silahkan masukan nama Player2 (Maks 8 karakter): "; 
                     std::cin.ignore(1000, '\n'); 
                     getline(std::cin, temporaryName);
                     if (IsNameValid(temporaryName) && temporaryName.size() <= 8)
@@ -66,7 +67,7 @@ void StartMenu()
                     {
                         std::cout << "Nama tidak valid, silahkan ulangi" << std::endl;
                     }
-                    std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                    std::cout << "Tekan ENTER untuk kembali" << std::endl;
                     std::cin.get();
                 } 
                 else if (pil2 == 0)
@@ -76,6 +77,7 @@ void StartMenu()
                 {
                     std::cout << "Pilihan tidak tersedia!" << std::endl;
                     std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                    std::cin.ignore();
                     std::cin.get();
                 }
             } while (pil2 != 0);            
@@ -86,6 +88,7 @@ void StartMenu()
             {
                 std::cout << "Silahkan menangkan game terlebih dahulu untuk melihat leaderboard" << std::endl;
                 std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                std::cin.ignore();
                 std::cin.get();
             }
             else
@@ -93,6 +96,7 @@ void StartMenu()
                 clear();
                 DrawLeaderboard();
                 std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+                std::cin.ignore();
                 std::cin.get();
             }
         }
@@ -103,6 +107,7 @@ void StartMenu()
         {
             std::cout << "Pilihan yang anda inputkan tidak tersedia!" << std::endl;
             std::cout << "Tekan ENTER untuk kembali ke menu" << std::endl;
+            std::cin.ignore();
             std::cin.get();
         }
     } while (pil != 4);  
